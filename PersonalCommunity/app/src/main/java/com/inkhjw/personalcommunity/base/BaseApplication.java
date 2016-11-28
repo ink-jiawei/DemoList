@@ -5,6 +5,7 @@ import android.content.ComponentCallbacks;
 import android.content.Context;
 import android.content.res.Configuration;
 
+import com.inkhjw.personalcommunity.InitEventBusIndex;
 
 import org.greenrobot.eventbus.EventBus;
 
