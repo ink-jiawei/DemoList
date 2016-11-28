@@ -1,0 +1,138 @@
+<resources>
+
+    <string name="app_name">一元夺宝</string>
+
+    <string name="main_indiana">夺宝</string>
+    <string name="main_announced">最新揭晓</string>
+    <string name="main_found">发现</string>
+    <string name="main_list">清单</string>
+    <string name="main_user">我的</string>
+
+    <string name="index">首页</string>
+
+    <string name="edt">编辑</string>
+    <string name="save">保存</string>
+    <string name="finish">完成</string>
+    <string name="cancel">取消</string>
+    <string name="delete">删除</string>
+
+
+    <!--夺宝页面........................................................................... -->
+    <string name="indiana_type">分类</string>
+    <string name="indiana_hot_shop">优选商品</string>
+    <string name="indiana_share_im">晒单</string>
+    <string name="indiana_hot_question">常见问题</string>
+    <string name="indiana_sound_text1">恭喜</string>
+    <string name="indiana_bar_hot">人气</string>
+    <string name="indiana_bar_new">最新</string>
+    <string name="indiana_bar_progress">进度</string>
+    <string name="indiana_bar_pople_num">总需人次</string>
+    <string name="announced_progress">揭晓进度</string>
+    <string name="indiana_search_add">加入清单</string>
+
+    <string name="indiana_type_look">分类浏览</string>
+    <string name="indiana_type_look_all">全部商品</string>
+    <string name="indiana_type_look_youxuan">优选商品</string>
+    <string name="indiana_type_look_phone">苹果手机</string>
+    <string name="indiana_type_look_car">豪车</string>
+    <string name="indiana_type_look_pack">包包</string>
+    <string name="indiana_type_look_watcher">手表</string>
+    <string name="indiana_type_look_zhubao">珠宝</string>
+    <string name="indiana_type_look_other">其它商品</string>
+
+    <string name="indiana_search_hint">搜索商品</string>
+    <string name="indiana_search_hot">热门搜索</string>
+    <string name="indiana_search_histroy">历史搜索</string>
+    <string name="indiana_search_clear">清空</string>
+    <string name="indiana_search_add_all">全部加入清单</string>
+    <string name="indiana_search_next_need">剩余</string>
+
+    <string name="indiana_message_center">消息中心</string>
+
+    <!--最新揭晓........................................................................... -->
+    <string name="announced_qihao">期号：</string>
+    <string name="announced_will_announced">即将揭晓</string>
+
+    <!--发现页面........................................................................... -->
+    <string name="found_item_shaidan">晒单分享</string>
+    <string name="found_item_shaidan_hint">没错，就是我中的!来咬我啊!</string>
+    <string name="found_item_hot1">一元钱就夺到宝</string>
+    <string name="found_item_hot1_hint">夺宝数据大公开，7天就能夺到宝!</string>
+
+    <!--清单页面........................................................................... -->
+    <string name="list_item_all_need_text1">总需</string>
+    <string name="list_item_all_need_text2">人次，</string>
+    <string name="list_item_next_need_text1">剩余</string>
+    <string name="list_item_next_need_text2">人次</string>
+    <string name="list_selected_all">全选</string>
+    <string name="list_put">结算</string>
+
+    <!--用户页面........................................................................... -->
+    <string name="user_balance_baoshi">宝石：</string>
+    <string name="user_balance">余额：</string>
+    <string name="user_duobao_money">夺宝币</string>
+    <string name="user_chongzhi">充值</string>
+    <string name="user_indiana_ing">正在进行</string>
+    <string name="user_indiana_end">已揭晓</string>
+    <string name="user_indiana_more">多期参与</string>
+    <string name="user_list_duobaojilu">全部夺宝记录</string>
+    <string name="user_list_xingyunjilu">幸运记录</string>
+    <string name="user_list_goumaijilu">购买记录</string>
+    <string name="user_list_hongbao">红包</string>
+    <string name="user_list_youhuijuan">优惠券</string>
+    <string name="user_list_shaidan">晒单</string>
+    <string name="user_list_wodebaoshi">我的宝石</string>
+    <string name="user_list_chongzhijilu">充值记录</string>
+    <string name="user_list_duobaokefu">夺宝客服</string>
+
+    <string name="user_presonal_info">个人资料</string>
+    <string name="user_presonal_info_avatar">头像</string>
+    <string name="user_presonal_info_id">ID</string>
+    <string name="user_presonal_info_nickname">昵称</string>
+    <string name="user_presonal_info_phone">手机号码</string>
+    <string name="user_presonal_info_truename">实名认证</string>
+    <string name="user_presonal_info_address">地址管理</string>
+
+    <string name="user_presonal_change_avatar">修改头像</string>
+    <string name="picture_selected_camera">拍照</string>
+    <string name="picture_selected_gallery">相册</string>
+    <string name="user_presonal_change_nickname">修改昵称</string>
+
+    <string name="user_presonal_address_manager">地址管理</string>
+    <string name="user_presonal_address_add_new">添加新地址</string>
+    <string name="user_presonal_address_add">添加</string>
+
+    <string name="user_presonal_address_edt">添加地址</string>
+    <string name="user_presonal_address_edt_shouhuoren">收货人</string>
+    <string name="user_presonal_address_edt_phone">手机号码</string>
+    <string name="user_presonal_address_edt_sheng">省份</string>
+    <string name="user_presonal_address_edt_city">城市</string>
+    <string name="user_presonal_address_edt_qu">地区</string>
+    <string name="user_presonal_address_edt_detail">详细地址</string>
+    <string name="user_presonal_address_edt_default">默认地址</string>
+    <string name="user_presonal_address_edt_set_default">设为默认地址</string>
+    <string name="user_presonal_address_edt_address_hint">请选择</string>
+    <string name="user_presonal_address_edt_sheng_dialog_title">请选择省份</string>
+    <string name="user_presonal_address_edt_city_dialog_title">请选择城市</string>
+    <string name="user_presonal_address_edt_qu_dialog_title">请选择地区</string>
+
+    <string name="user_presonal_identity_verify">实名认证</string>
+    <string name="user_presonal_identity_verify_phone">手机号码</string>
+    <string name="user_presonal_identity_verify_truename">真实姓名</string>
+    <string name="user_presonal_identity_verify_idcard">身份证号</string>
+    <string name="user_presonal_identity_verify_handle_idcard">手持身份证照片</string>
+    <string name="user_presonal_identity_verify_hint">认证后的信息不可修改，请谨慎填写</string>
+    <string name="user_presonal_identity_verify_ing">审核中</string>
+    <string name="user_presonal_identity_verify_finish">已认证</string>
+
+    <string name="user_presonal_setting">设置</string>
+    <string name="user_presonal_setting_announced_n">揭晓通知设置</string>
+    <string name="user_presonal_setting_problems">常见问题</string>
+    <string name="user_presonal_setting_update">检查更新</string>
+    <string name="user_presonal_setting_about">关于1元夺宝</string>
+    <string name="user_presonal_setting_clear_cache">清除缓存</string>
+    <string name="user_presonal_setting_logout">退出登录</string>
+    <string name="user_presonal_setting_announced_open">已开启</string>
+    <string name="user_presonal_setting_announced_close">已关闭</string>
+
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">美天</string>
+    <string name="no_permission">无权限</string>
+</resources>

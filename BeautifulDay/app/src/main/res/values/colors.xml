@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="app_theme">#FF7755</color>
+    <color name="app_transparent">#00000000</color>
+    <color name="app_white">#ffffff</color>
+    <color name="app_black">#000000</color>
+
+    <!--底部导航栏默认的颜色-->
+    <color name="main_bottom_item_default_color">#8a8a8a</color>
+    <!--分割线的颜色-->
+    <color name="divider_line_color">#cceeeeee</color>
+
+    <color name="default_text_color">#44999999</color>
+</resources>

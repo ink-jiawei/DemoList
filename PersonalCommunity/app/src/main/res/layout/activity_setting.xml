@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <View style="@style/divider_line_height2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View style="@style/view_background_item" />
+
+        <!--揭晓通知设置-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_setting_announced_n"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x13"
+            android:paddingRight="@dimen/x4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_setting_announced_n"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x13" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/user_presonal_setting_announced_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_hint"
+                    android:textSize="@dimen/x13" />
+
+                <ImageView
+                    android:layout_width="@dimen/y13"
+                    android:layout_height="@dimen/y13"
+                    android:layout_marginLeft="@dimen/x4"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/arrow_right" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View style="@style/divider_line_height2" />
+
+        <View style="@style/view_background_item" />
+
+        <!--常见问题-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_setting_problems"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x13"
+            android:paddingRight="@dimen/x4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_setting_problems"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x13" />
+
+            <ImageView
+                android:layout_width="@dimen/y13"
+                android:layout_height="@dimen/y13"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x4"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <View style="@style/divider_line_height2" />
+
+        <!--检查更新-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_setting_update"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x13"
+            android:paddingRight="@dimen/x13">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_setting_update"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x13" />
+
+            <TextView
+                android:id="@+id/user_presonal_setting_update_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/text_color_hint"
+                android:textSize="@dimen/x13" />
+
+        </RelativeLayout>
+
+        <View style="@style/divider_line_height2" />
+
+        <!--关于1元夺宝-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_setting_about"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x13"
+            android:paddingRight="@dimen/x4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_setting_about"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x13" />
+
+            <ImageView
+                android:layout_width="@dimen/y13"
+                android:layout_height="@dimen/y13"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x4"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <View style="@style/divider_line_height2" />
+
+        <View style="@style/view_background_item" />
+        <!--清除缓存-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_setting_clear_cache"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x13"
+            android:paddingRight="@dimen/x13">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_setting_clear_cache"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x13" />
+
+            <TextView
+                android:id="@+id/user_presonal_setting_clear_cache_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/text_color_hint"
+                android:textSize="@dimen/x13" />
+
+        </RelativeLayout>
+
+        <View style="@style/divider_line_height2" />
+
+        <View style="@style/view_background_item" />
+
+        <Button
+            android:id="@+id/user_presonal_setting_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_click_selector"
+            android:gravity="center"
+            android:paddingBottom="@dimen/y9"
+            android:paddingTop="@dimen/y9"
+            android:text="@string/user_presonal_setting_logout"
+            android:textColor="@color/text_color_normal_title"
+            android:textSize="@dimen/x13" />
+
+        <View style="@style/divider_line_height2" />
+
+    </LinearLayout>
+</LinearLayout>

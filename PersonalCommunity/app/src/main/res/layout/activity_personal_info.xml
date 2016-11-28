@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <View style="@style/divider_line_height2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <!--头像-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_info_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y45"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x22"
+            android:paddingRight="@dimen/x4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_info_avatar"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x15" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.inkhjw.personalcommunity.widget.AvatarView
+                    android:id="@+id/user_presonal_info_avatar_image"
+                    android:layout_width="@dimen/y27"
+                    android:layout_height="@dimen/y27" />
+
+                <ImageView
+                    android:layout_width="@dimen/y13"
+                    android:layout_height="@dimen/y13"
+                    android:layout_marginLeft="@dimen/x4"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/arrow_right" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            style="@style/divider_line_height2"
+            android:layout_marginLeft="@dimen/x13" />
+
+        <!--ID-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_info_id"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x22"
+            android:paddingRight="@dimen/x4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_info_id"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x15" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/user_presonal_info_id_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_color_small_title"
+                    android:textSize="@dimen/x13" />
+
+                <ImageView
+                    android:layout_width="@dimen/y13"
+                    android:layout_height="@dimen/y13"
+                    android:layout_marginLeft="@dimen/x4"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/arrow_right" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            style="@style/divider_line_height2"
+            android:layout_marginLeft="@dimen/x13" />
+
+        <!--昵称-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_info_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x22"
+            android:paddingRight="@dimen/x4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_info_nickname"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x15" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/user_presonal_info_nickname_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text_color_small_title"
+                    android:textSize="@dimen/x13" />
+
+                <ImageView
+                    android:layout_width="@dimen/y13"
+                    android:layout_height="@dimen/y13"
+                    android:layout_marginLeft="@dimen/x4"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/arrow_right" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            style="@style/divider_line_height2"
+            android:layout_marginLeft="@dimen/x13" />
+
+        <!--手机号码-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_info_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x22"
+            android:paddingRight="@dimen/x4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_info_phone"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x15" />
+
+            <ImageView
+                android:layout_width="@dimen/y13"
+                android:layout_height="@dimen/y13"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <View
+            style="@style/divider_line_height2"
+            android:layout_marginLeft="@dimen/x13" />
+
+        <!--实名认证-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_info_truename"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x22"
+            android:paddingRight="@dimen/x4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_info_truename"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x15" />
+
+            <ImageView
+                android:layout_width="@dimen/y13"
+                android:layout_height="@dimen/y13"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <View
+            style="@style/divider_line_height2"
+            android:layout_marginLeft="@dimen/x13" />
+
+        <!--地址管理-->
+        <RelativeLayout
+            android:id="@+id/user_presonal_info_address"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y31"
+            android:background="@drawable/default_click_selector"
+            android:paddingLeft="@dimen/x22"
+            android:paddingRight="@dimen/x4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/user_presonal_info_address"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x15" />
+
+            <ImageView
+                android:layout_width="@dimen/y13"
+                android:layout_height="@dimen/y13"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <View style="@style/divider_line_height2" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.inkhjw.personalcommunity.framework.banner.Banner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y87" />
+
+    <!--菜单按钮-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--分类-->
+        <LinearLayout
+            android:id="@+id/indiana_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/default_click_selector"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/y7"
+            android:paddingTop="@dimen/y7">
+
+            <ImageView
+                android:layout_width="@dimen/y26"
+                android:layout_height="@dimen/y26"
+                android:scaleType="centerCrop"
+                android:src="@drawable/indiana_type" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y5"
+                android:text="@string/indiana_type"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x11" />
+
+        </LinearLayout>
+
+        <!--优选商品-->
+        <LinearLayout
+            android:id="@+id/indiana_hot_shop"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/default_click_selector"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/y7"
+            android:paddingTop="@dimen/y7">
+
+            <ImageView
+                android:layout_width="@dimen/y26"
+                android:layout_height="@dimen/y26"
+                android:scaleType="centerCrop"
+                android:src="@drawable/indiana_hot_shop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y5"
+                android:text="@string/indiana_hot_shop"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x11" />
+
+        </LinearLayout>
+
+        <!--晒单-->
+        <LinearLayout
+            android:id="@+id/indiana_share_im"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/default_click_selector"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/y7"
+            android:paddingTop="@dimen/y7">
+
+            <ImageView
+                android:layout_width="@dimen/y26"
+                android:layout_height="@dimen/y26"
+                android:scaleType="centerCrop"
+                android:src="@drawable/indiana_share_im" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y5"
+                android:text="@string/indiana_share_im"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x11" />
+
+        </LinearLayout>
+
+        <!--常见问题-->
+        <LinearLayout
+            android:id="@+id/indiana_hot_question"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/default_click_selector"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/y7"
+            android:paddingTop="@dimen/y7">
+
+            <ImageView
+                android:layout_width="@dimen/y26"
+                android:layout_height="@dimen/y26"
+                android:scaleType="centerCrop"
+                android:src="@drawable/indiana_hot_question" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y5"
+                android:text="@string/indiana_hot_question"
+                android:textColor="@color/text_color_normal_title"
+                android:textSize="@dimen/x11" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/divider_line_height2" />
+
+    <!--幸运通知-->
+    <LinearLayout
+        android:id="@+id/indiana_sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/default_click_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/y4"
+        android:paddingLeft="@dimen/x17"
+        android:paddingRight="@dimen/x17"
+        android:paddingTop="@dimen/y4">
+
+        <ImageView
+            android:layout_width="@dimen/y13"
+            android:layout_height="@dimen/y13"
+            android:layout_marginRight="@dimen/x8"
+            android:scaleType="centerCrop"
+            android:src="@drawable/indiana_luickly_sound" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/indiana_sound_text1"
+            android:textColor="@color/text_color_hint"
+            android:textSize="@dimen/x10" />
+
+        <TextView
+            android:id="@+id/indiana_sound_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/announced_progress_text_color"
+            android:textSize="@dimen/x10" />
+
+        <TextView
+            android:id="@+id/indiana_sound_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_hint"
+            android:textSize="@dimen/x10" />
+
+        <TextView
+            android:id="@+id/indiana_sound_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_normal_title"
+            android:textSize="@dimen/x10" />
+    </LinearLayout>
+
+    <View style="@style/view_background_item" />
+    <!--排序-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--人气-->
+        <TextView
+            android:id="@+id/indiana_bar_hot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/x8"
+            android:text="@string/indiana_bar_hot"
+            android:textColor="@color/top_nav_bar_text"
+            android:textSize="@dimen/x12" />
+
+        <!--最新-->
+        <TextView
+            android:id="@+id/indiana_bar_new"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/x8"
+            android:text="@string/indiana_bar_new"
+            android:textColor="@color/top_nav_bar_text"
+            android:textSize="@dimen/x12" />
+
+        <!--进度-->
+        <TextView
+            android:id="@+id/indiana_bar_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/x8"
+            android:text="@string/indiana_bar_progress"
+            android:textColor="@color/top_nav_bar_text"
+            android:textSize="@dimen/x12" />
+
+        <!--总需人次-->
+        <TextView
+            android:id="@+id/indiana_bar_pople_num"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/x8"
+            android:text="@string/indiana_bar_pople_num"
+            android:textColor="@color/top_nav_bar_text"
+            android:textSize="@dimen/x12" />
+
+    </LinearLayout>
+</LinearLayout>

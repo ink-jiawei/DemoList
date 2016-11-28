@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <View style="@style/divider_line_height2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y34"
+            android:gravity="center"
+            android:padding="@dimen/x13"
+            android:text="1.怎样参加1元夺宝？"
+            android:textColor="@color/text_color_normal_title"
+            android:textSize="@dimen/x13" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_color"
+            android:orientation="vertical"
+            android:padding="@dimen/x13">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/y3"
+                android:paddingTop="@dimen/y3"
+                android:text="使用电话号码注册，就可以参加1元夺宝了。"
+                android:textColor="@color/text_color_small_title"
+                android:textSize="@dimen/x11" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/y3"
+                android:paddingTop="@dimen/y3"
+                android:text="参与方式："
+                android:textColor="@color/text_color_small_title"
+                android:textSize="@dimen/x11" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/y3"
+                android:paddingTop="@dimen/y3"
+                android:text="a、选择喜欢的商品，选择要参与的人次并支付；"
+                android:textColor="@color/text_color_small_title"
+                android:textSize="@dimen/x11" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/x3"
+                android:paddingBottom="@dimen/y3"
+                android:paddingTop="@dimen/y3"
+                android:text="b、没人每次要花费1元，获取1个夺宝号码，然后开始夺宝。1元夺宝，就是这么简单!"
+                android:textColor="@color/text_color_small_title"
+                android:textSize="@dimen/x11" />
+
+        </LinearLayout>
+
+        <View style="@style/divider_line_height2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y34"
+            android:gravity="center"
+            android:padding="@dimen/x13"
+            android:text="2.1元夺宝是怎样计算幸运号码的？"
+            android:textColor="@color/text_color_normal_title"
+            android:textSize="@dimen/x13" />
+
+        <View style="@style/divider_line_height2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y34"
+            android:gravity="center"
+            android:padding="@dimen/x13"
+            android:text="3.幸运号码的计算结果可信吗？"
+            android:textColor="@color/text_color_normal_title"
+            android:textSize="@dimen/x13" />
+
+        <View style="@style/divider_line_height2" />
+    </LinearLayout>
+</LinearLayout>

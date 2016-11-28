@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar_statusbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/appThemeColor">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y27"
+        android:background="@color/appThemeColor">
+        <!--左边-->
+        <LinearLayout
+            android:id="@+id/toolbar_left_layout"
+            android:layout_width="@dimen/y27"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/default_click_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+
+            <ImageView
+                android:id="@+id/toolbar_left_image"
+                android:layout_width="@dimen/y14"
+                android:layout_height="@dimen/y14"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/toolbar_left_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x12" />
+        </LinearLayout>
+        <!--中间-->
+        <LinearLayout
+            android:id="@+id/toolbar_center_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/toolbar_center_image"
+                android:layout_width="@dimen/y47"
+                android:layout_height="@dimen/y12"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/toolbar_center_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x35"
+                android:layout_marginRight="@dimen/x35"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x16" />
+
+        </LinearLayout>
+
+
+        <!--右边-->
+        <LinearLayout
+            android:id="@+id/toolbar_right_layout"
+            android:layout_width="@dimen/y27"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/default_click_selector"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/toolbar_right_image"
+                android:layout_width="@dimen/y14"
+                android:layout_height="@dimen/y14"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/toolbar_right_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/x12" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</FrameLayout>

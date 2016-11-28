@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--App的主题颜色-->
+    <color name="appThemeColor1">#1196db</color>
+    <color name="appThemeColor2">#1196db</color>
+    <color name="appThemeColor3">#1196db</color>
+    <color name="appThemeColor4">#1196db</color>
+    <color name="appThemeColor5">#1196db</color>
+    <color name="appThemeColor6">#1196db</color>
+
+    <!--没有选中的Tab的颜色-->
+    <color name="tabNoSelectedColor">#515151</color>
+
+    <!--全透明的颜色-->
+    <color name="transparent">#00000000</color>
+</resources>

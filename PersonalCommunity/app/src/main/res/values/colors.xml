@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--全局颜色变量-->
+    <color name="appThemeColor">#f2496c</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="background_color">#f8f8f8</color>
+
+    <color name="text_color_normal_title">#333333</color>
+    <color name="text_color_small_title">#666666</color>
+    <color name="text_color_hint">#999999</color>
+
+    <color name="top_nav_bar_text">#4c4c4c</color>
+
+    <color name="announced_progress_text_color">#1d65bd</color>
+
+    <!--分割线的颜色-->
+    <color name="divider_line_color">#e6e6e6</color>
+
+    <!--提示框的背景颜色-->
+    <color name="toast_message_bg_color">#88020202</color>
+
+    <!--View单击时默认颜色-->
+    <color name="view_click_color">#33777777</color>
+</resources>

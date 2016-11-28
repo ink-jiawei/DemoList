@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="@color/toast_message_bg_color"></solid>
+    <stroke android:color="@color/toast_message_bg_color"></stroke>
+    <corners android:radius="5dp"></corners>
+</shape>

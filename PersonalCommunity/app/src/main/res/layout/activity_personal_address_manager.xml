@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <View style="@style/divider_line_height2" />
+
+    <Button
+        android:id="@+id/personal_address_add_new"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y28"
+        android:layout_marginLeft="@dimen/x13"
+        android:layout_marginRight="@dimen/x13"
+        android:layout_marginTop="@dimen/y12"
+        android:background="@drawable/address_add_selector"
+        android:gravity="center"
+        android:text="@string/user_presonal_address_add_new"
+        android:textColor="@color/white"
+        android:textSize="@dimen/x16" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View style="@style/view_background_item" />
+
+        <View style="@style/view_background_item" />
+
+        <!--晒单分享-->
+        <RelativeLayout
+            android:id="@+id/found_item1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_click_selector"
+            android:paddingBottom="@dimen/x13"
+            android:paddingLeft="@dimen/x13"
+            android:paddingRight="@dimen/x8"
+            android:paddingTop="@dimen/x13">
+
+            <ImageView
+                android:id="@+id/found_list_icon1"
+                android:layout_width="@dimen/y34"
+                android:layout_height="@dimen/y34"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/found_shaidan" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x17"
+                android:layout_toRightOf="@id/found_list_icon1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/found_item_shaidan"
+                    android:textColor="@color/text_color_normal_title"
+                    android:textSize="@dimen/x14" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y3"
+                    android:text="@string/found_item_shaidan_hint"
+                    android:textColor="@color/text_color_hint"
+                    android:textSize="@dimen/x10" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/y13"
+                android:layout_height="@dimen/y13"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <View style="@style/divider_line_height2" />
+
+        <View style="@style/view_background_item" />
+
+        <!--夺宝热门1-->
+        <RelativeLayout
+            android:id="@+id/found_item2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_click_selector"
+            android:paddingBottom="@dimen/x13"
+            android:paddingLeft="@dimen/x13"
+            android:paddingRight="@dimen/x8"
+            android:paddingTop="@dimen/x13">
+
+            <ImageView
+                android:id="@+id/found_list_icon2"
+                android:layout_width="@dimen/y34"
+                android:layout_height="@dimen/y34"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/found_hot1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x17"
+                android:layout_toRightOf="@id/found_list_icon2"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/found_item_hot1"
+                        android:textColor="@color/text_color_normal_title"
+                        android:textSize="@dimen/x14" />
+
+                    <ImageView
+                        android:layout_width="@dimen/x31"
+                        android:layout_height="@dimen/y9"
+                        android:layout_marginLeft="@dimen/x6"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/hot_icon" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y3"
+                    android:text="@string/found_item_hot1_hint"
+                    android:textColor="@color/text_color_hint"
+                    android:textSize="@dimen/x10" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/y13"
+                android:layout_height="@dimen/y13"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <View style="@style/divider_line_height2" />
+        <!--夺宝热门2-->
+        <RelativeLayout
+            android:id="@+id/found_item3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/default_click_selector"
+            android:paddingBottom="@dimen/x13"
+            android:paddingLeft="@dimen/x13"
+            android:paddingRight="@dimen/x8"
+            android:paddingTop="@dimen/x13">
+
+            <ImageView
+                android:id="@+id/found_list_icon3"
+                android:layout_width="@dimen/y34"
+                android:layout_height="@dimen/y34"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/found_hot1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x17"
+                android:layout_toRightOf="@id/found_list_icon3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/found_item_hot1"
+                        android:textColor="@color/text_color_normal_title"
+                        android:textSize="@dimen/x14" />
+
+                    <ImageView
+                        android:layout_width="@dimen/x31"
+                        android:layout_height="@dimen/y9"
+                        android:layout_marginLeft="@dimen/x6"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/hot_icon" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y3"
+                    android:text="@string/found_item_hot1_hint"
+                    android:textColor="@color/text_color_hint"
+                    android:textSize="@dimen/x10" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/y13"
+                android:layout_height="@dimen/y13"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_right" />
+        </RelativeLayout>
+
+        <View style="@style/divider_line_height2" />
+    </LinearLayout>
+</LinearLayout>
