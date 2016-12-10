@@ -206,12 +206,11 @@ public class FragmentUser extends BaseFragment {
     }
 
     @OnLongClick({R.id.user_avatar})
-    public boolean onLongClick(View view) {
+    public void onLongClick(View view) {
         switch (view.getId()) {
             case R.id.user_avatar:
                 break;
         }
-        return false;
     }
 
     /**

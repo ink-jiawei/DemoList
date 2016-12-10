@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.inkhjw.personalcommunity.R;
 import com.inkhjw.personalcommunity.bean.AnnouncedShopBean;
 import com.inkhjw.personalcommunity.framework.imageloader.GlideImageLoader;

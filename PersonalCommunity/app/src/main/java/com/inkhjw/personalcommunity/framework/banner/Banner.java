@@ -20,9 +20,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.inkhjw.personalcommunity.R;
+import com.inkhjw.personalcommunity.framework.imageloader.ImageLoaderInterface;
 import com.inkhjw.personalcommunity.framework.banner.listener.OnBannerClickListener;
 import com.inkhjw.personalcommunity.framework.banner.view.BannerViewPager;
-import com.inkhjw.personalcommunity.framework.imageloader.ImageLoaderInterface;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
