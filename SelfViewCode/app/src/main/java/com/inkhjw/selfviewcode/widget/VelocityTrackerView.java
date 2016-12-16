@@ -14,9 +14,9 @@ import android.widget.Toast;
 
 /**
  * @author hjw
- * @deprecated CustomView
+ * @deprecated 速度检测器
  */
-public class CustomView extends View {
+public class VelocityTrackerView extends View {
     Paint paint;
     int width;
     int height;
@@ -25,17 +25,17 @@ public class CustomView extends View {
      */
     VelocityTracker velocityTracker;
 
-    public CustomView(Context context) {
+    public VelocityTrackerView(Context context) {
         super(context);
         init();
     }
 
-    public CustomView(Context context, AttributeSet attrs) {
+    public VelocityTrackerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public CustomView(Context context, AttributeSet attrs, int defStyle) {
+    public VelocityTrackerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
