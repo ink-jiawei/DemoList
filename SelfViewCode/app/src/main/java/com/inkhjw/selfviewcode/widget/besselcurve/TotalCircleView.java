@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -137,6 +138,8 @@ public class TotalCircleView extends View {
         drawHeartShape(canvas);
     }
 
+    boolean isFirst = true;
+
     public void drawHeartShape(Canvas canvas) {
         Path path = new Path();
         path.moveTo(pointLeft.x, pointLeft.y);
@@ -145,41 +148,63 @@ public class TotalCircleView extends View {
         path.cubicTo(point5.x, point5.y, point6.x, point6.y, pointBottom.x, pointBottom.y);
         path.cubicTo(point7.x, point7.y, point8.x, point8.y, pointLeft.x, pointLeft.y);
         canvas.drawPath(path, paint);
-        addRight();
+        if (isFirst) {
+            isFirst = false;
+            addRight();
+        }
+    }
+
+    @Override
+    public void postInvalidate() {
+        super.postInvalidate();
     }
 
     public void addLeft() {
-        if (pointLeft.x >= circleCenterPoint.x - r - TOTAL_MOVE) {
-            pointRight.x -= TOTAL_MOVE / 100;
-            postInvalidateDelayed(10);
-        } else {
-            lessLeft();
+        for (int i = 0; i < 100; i++) {
+            if (pointLeft.x >= circleCenterPoint.x - r - TOTAL_MOVE) {
+                pointLeft.x -= TOTAL_MOVE / 100;
+                postInvalidateDelayed(10);
+                Log.e("test", "addLeft:" + pointRight.x + "|" + circleCenterPoint.x);
+            } else {
+                lessLeft();
+                break;
+            }
         }
     }
 
     public void lessLeft() {
-        if (pointLeft.x <= circleCenterPoint.x - r) {
-            pointRight.x += TOTAL_MOVE / 100;
-            postInvalidateDelayed(10);
-        } else {
-            initHeart();
+        for (int i = 0; i < 100; i++) {
+            if (pointLeft.x <= circleCenterPoint.x - r) {
+                pointLeft.x += TOTAL_MOVE / 100;
+                postInvalidateDelayed(10);
+                Log.e("test", "lessLeft:" + pointRight.x + "|" + circleCenterPoint.x);
+            } else {
+                initHeart();
+                break;
+            }
         }
     }
 
     public void addRight() {
-        if (pointRight.x <= circleCenterPoint.x + r + TOTAL_MOVE) {
-            pointRight.x += TOTAL_MOVE / 100;
-            postInvalidateDelayed(10);
-        } else {
-            addLeft();
-            lessRight();
+        for (int i = 0; i < 100; i++) {
+            if (pointRight.x <= circleCenterPoint.x + r + TOTAL_MOVE) {
+                pointRight.x += TOTAL_MOVE / 100;
+                postInvalidateDelayed(10);
+            } else {
+                addLeft();
+                lessRight();
+                break;
+            }
         }
     }
 
     public void lessRight() {
-        if (pointRight.x >= circleCenterPoint.x + r) {
-            pointRight.x += TOTAL_MOVE / 100;
-            postInvalidateDelayed(10);
+        for (int i = 0; i < 100; i++) {
+            if (pointRight.x >= circleCenterPoint.x + r) {
+                pointRight.x -= TOTAL_MOVE / 100;
+                postInvalidateDelayed(10);
+                Log.e("test", "lessRight:" + pointRight.x + "|" + circleCenterPoint.x);
+            }
         }
     }
 }
