@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,13 +30,10 @@ public class MainActivity extends AppCompatActivity {
         // getSupportActionBar().hide();
 
         initStatusBar();
-        setSupportBarTint(Color.BLUE);
+//        setSupportBarTint(Color.BLUE);
 
         setContentView(R.layout.activity_main);
 
-        toolabr = (Toolbar) findViewById(R.id.toolabr);
-        toolabr.setTitle("沉浸式状态栏");
-        setSupportActionBar(toolabr);
     }
 
     /**
@@ -45,22 +43,27 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup viewGroup = (ViewGroup) getWindow().getDecorView().findViewById(android.R.id.content);
         viewGroup.removeAllViews();
         rootLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        rootLayout.setLayoutParams(params);
         rootLayout.setOrientation(LinearLayout.VERTICAL);
         viewGroup.addView(rootLayout);
     }
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
+        //super.setContentView(layoutResID);
         LayoutInflater.from(this).inflate(layoutResID, rootLayout, true);
     }
 
     @Override
     public void setContentView(View view) {
+        //super.setContentView(view);
         rootLayout.addView(view);
     }
 
     @Override
     public void setContentView(View view, ViewGroup.LayoutParams params) {
+        //super.setContentView(view, params);
         rootLayout.addView(view, params);
     }
 
@@ -71,18 +74,9 @@ public class MainActivity extends AppCompatActivity {
     public void setSupportBarTint(int color) {
         // 4.4及以上版本开启
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus();
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             setStatus(color);
         }
-    }
-
-    @TargetApi(19)
-    private void setTranslucentStatus() {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        winParams.flags |= bits;
-        win.setAttributes(winParams);
     }
 
     /**
@@ -102,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             linearLayout.setLayoutParams(params);
             linearLayout.setBackgroundColor(color);
             rootLayout.addView(linearLayout);
+            Log.e("test", "setStatus");
         }
     }
 
