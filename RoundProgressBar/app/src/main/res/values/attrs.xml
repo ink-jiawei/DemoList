@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--计步进度-->
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color" />
+        <attr name="roundProgressStartColor" format="color" />
+        <attr name="roundProgressEndColor" format="color" />
+        <attr name="roundWidth" format="dimension" />
+        <attr name="max" format="integer" />
+        <attr name="centerProgressTextColor" format="color" />
+        <attr name="centerProgressTextSize" format="dimension" />
+    </declare-styleable>
+
+    <!--计步的历史柱状图-->
+    <declare-styleable name="ScrollPickView">
+        <attr name="textSize" format="dimension" />
+        <attr name="selectedTextColor" format="color" />
+        <attr name="otherTextColor" format="color" />
+        <attr name="rectangleColor" format="color" />
+        <attr name="rectangleMaxHeight" format="dimension" />
+    </declare-styleable>
+</resources>

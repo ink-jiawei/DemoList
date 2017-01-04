@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="appThemeColor">#48ae55</color>
+    <color name="text_color_normal_title">#333333</color>
+    <color name="text_color_hint">#999999</color>
+
+    <!--计步圆盘背景颜色-->
+    <color name="step_foot_background_color">#dddddd</color>
+    <color name="step_foot_progress_end_color">#489ebe</color>
+    <color name="step_foot_time_rect_color">#ffc11b</color>
+</resources>
