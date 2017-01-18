@@ -11,7 +11,6 @@ import android.view.View;
 
 /**
  * @author hjw
- * @deprecated 自定义View
  */
 public class CustomView extends View implements View.OnClickListener {
     /**

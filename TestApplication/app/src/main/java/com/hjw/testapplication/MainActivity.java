@@ -1,9 +1,9 @@
 package com.hjw.testapplication;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     static final String HTTP_URL = "http://115.159.186.48/zhiyouhuifuApp/articleList";
 
     RequestQueue requestQueue;
+    private TextView single;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +38,15 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
-    int i = 0;
+    public void click(View view) {
+        single.setText("结果：" + SingleUtils.getSingle());
+    }
 
     public void init() {
         requestQueue = Volley.newRequestQueue(this);
         image_view = (ImageView) findViewById(R.id.image_view);
         text_view = (TextView) findViewById(R.id.text_view);
+        single = (TextView) findViewById(R.id.single);
         getData();
         getStringData();
     }

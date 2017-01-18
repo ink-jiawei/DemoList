@@ -19,7 +19,8 @@
             <ImageView
                 android:id="@+id/image_view"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:onClick="click" />
 
             <TextView
                 android:id="@+id/text_view"
@@ -32,6 +33,12 @@
                 android:background="#ccccccff"
                 self:view_color="#ff0000"
                 self:view_type="rect" />
+
+            <TextView
+                android:id="@+id/single"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp" />
 
         </LinearLayout>
     </ScrollView>
