@@ -11,7 +11,6 @@ import com.inkhjw.beautifulday.base.BaseFragment;
 
 /**
  * @author hjw
- * @deprecated
  */
 public class MainFragment1 extends BaseFragment {
     public MainFragment1() {

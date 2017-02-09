@@ -26,7 +26,6 @@ import okhttp3.Response;
 
 /**
  * @author hjw
- * @deprecated
  */
 public class LoginActivity extends BaseActivity {
 

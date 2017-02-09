@@ -15,7 +15,6 @@ import butterknife.Bind;
 
 /**
  * @author hjw
- * @deprecated
  */
 public class MainActivity extends BaseActivity implements MainContract.View, BottomNavigationBar.OnTabSelectedListener {
 
