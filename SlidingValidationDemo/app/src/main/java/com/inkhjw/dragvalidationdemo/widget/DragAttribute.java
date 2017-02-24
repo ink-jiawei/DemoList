@@ -16,11 +16,20 @@ public class DragAttribute {
     public static final int DEFAULT_DRAG_DIRECTION = DRAG_DIRECTION_LEFT;
     public static final int DEFAULT_TIP_TEXT_COLOR = Color.WHITE;
     public static final float DEFAULT_TIP_TEXT_SIZE = 14;
-
+    public static final float DEFAULT_ROUND_RADIUS = 10;
+    /**
+     * 自定义属性
+     */
     private String tipText;
     private int tipTextColor;
-    private float tipTextSize;
     private int dragDirection;
+    private float tipTextSize;
+
+    /**
+     * 扩展属性
+     */
+    private float dragRoundRadius;//滑块圆角大小
+    private boolean isTextVisible = true;//tipText文本是否可见
 
     public DragAttribute() {
     }
@@ -41,6 +50,14 @@ public class DragAttribute {
         this.tipTextColor = tipTextColor;
     }
 
+    public int getDragDirection() {
+        return dragDirection;
+    }
+
+    public void setDragDirection(int dragDirection) {
+        this.dragDirection = dragDirection;
+    }
+
     public float getTipTextSize() {
         return tipTextSize;
     }
@@ -49,11 +66,19 @@ public class DragAttribute {
         this.tipTextSize = tipTextSize;
     }
 
-    public int getDragDirection() {
-        return dragDirection;
+    public float getDragRoundRadius() {
+        return dragRoundRadius;
     }
 
-    public void setDragDirection(int dragDirection) {
-        this.dragDirection = dragDirection;
+    public void setDragRoundRadius(float dragRoundRadius) {
+        this.dragRoundRadius = dragRoundRadius;
+    }
+
+    public boolean isTextVisible() {
+        return isTextVisible;
+    }
+
+    public void setTextVisible(boolean textVisible) {
+        isTextVisible = textVisible;
     }
 }

@@ -8,7 +8,7 @@
 
     <TextView
         android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginTop="100dp"
         android:background="#995599"
         android:gravity="center"
@@ -18,10 +18,19 @@
 
     <com.inkhjw.dragvalidationdemo.widget.DragValidationView
         android:layout_width="300dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginTop="100dp"
+        android:background="#FFE75764"
         drag:dragDirection="left"
         drag:tipText="@string/app_name"
         drag:tipTextColor="#995599"
         drag:tipTextSize="16sp" />
+
+
+    <com.inkhjw.dragvalidationdemo.widget.AVLoadingIndicatorView
+        android:id="@+id/indicator"
+        style="@style/AVLoadingIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFE75764" />
 </LinearLayout>

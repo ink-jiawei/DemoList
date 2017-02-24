@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">dragValidationDemo</string>
+    <string name="vail">向右滑动验证</string>
 </resources>
