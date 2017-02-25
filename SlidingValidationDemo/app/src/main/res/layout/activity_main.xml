@@ -6,31 +6,13 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="100dp"
-        android:background="#995599"
-        android:gravity="center"
-        android:text="@string/app_name"
-        android:textColor="#ffffff"
-        android:textSize="16sp" />
-
     <com.inkhjw.dragvalidationdemo.widget.DragValidationView
+        android:id="@+id/drag_view"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="100dp"
-        android:background="#FFE75764"
+        android:layout_marginTop="200dp"
         drag:dragDirection="left"
-        drag:tipText="@string/app_name"
-        drag:tipTextColor="#995599"
+        drag:tipText="向右滑动登录"
+        drag:tipTextColor="#65c98c"
         drag:tipTextSize="16sp" />
-
-
-    <com.inkhjw.dragvalidationdemo.widget.AVLoadingIndicatorView
-        android:id="@+id/indicator"
-        style="@style/AVLoadingIndicatorView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FFE75764" />
 </LinearLayout>

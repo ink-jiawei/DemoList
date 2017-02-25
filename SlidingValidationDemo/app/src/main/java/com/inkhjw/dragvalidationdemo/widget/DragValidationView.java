@@ -1,20 +1,15 @@
 package com.inkhjw.dragvalidationdemo.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -34,18 +29,11 @@ public class DragValidationView extends View {
     private RectF dragView;//拖动滑块矩阵
     private float downX;
     private float downY;
+    private boolean isDragIng = false;
     private boolean isAutoDrag = false;
     private float dragAnimDistance;//拖动滑块矩阵动画回弹的距离
 
-    private Indicator mIndicator;
-    private static final ArrowsIndicator DEFAULT_INDICATOR = new ArrowsIndicator();
-    private static final int MIN_SHOW_TIME = 500; // ms
-    private static final int MIN_DELAY = 500; // ms
-    private long mStartTime = -1;
-    private boolean mPostedHide = false;
-    private boolean mPostedShow = false;
-    private boolean mDismissed = false;
-    private boolean mShouldStartAnimationDrawable;
+    private DragValidationListener validationListener;
 
     public DragValidationView(Context context) {
         super(context);
@@ -78,9 +66,6 @@ public class DragValidationView extends View {
         dragAttribute.setTextVisible(true);
         dragAttribute.setDragRoundRadius(DragAttribute.DEFAULT_ROUND_RADIUS);
 
-        if (mIndicator == null) {
-            setIndicator(DEFAULT_INDICATOR);
-        }
         typedArray.recycle();
 
         paint = new Paint();
@@ -88,180 +73,18 @@ public class DragValidationView extends View {
         paint.setTextSize(dragAttribute.getTipTextSize());
     }
 
-    public Indicator getIndicator() {
-        return mIndicator;
-    }
-
-    public void setIndicator(Indicator d) {
-        if (mIndicator != d) {
-            if (mIndicator != null) {
-                mIndicator.setCallback(null);
-                unscheduleDrawable(mIndicator);
-            }
-
-            mIndicator = d;
-            if (d != null) {
-                d.setCallback(this);
-            }
-            postInvalidate();
-        }
-    }
-
-    public void hide() {
-        mDismissed = true;
-        removeCallbacks(mDelayedShow);
-        long diff = System.currentTimeMillis() - mStartTime;
-        if (diff >= MIN_SHOW_TIME || mStartTime == -1) {
-            // The progress spinner has been shown long enough
-            // OR was not shown yet. If it wasn't shown yet,
-            // it will just never be shown.
-            setVisibility(View.GONE);
-        } else {
-            // The progress spinner is shown, but not long enough,
-            // so put a delayed message in to hide it when its been
-            // shown long enough.
-            if (!mPostedHide) {
-                postDelayed(mDelayedHide, MIN_SHOW_TIME - diff);
-                mPostedHide = true;
-            }
-        }
-    }
-
-    public void show() {
-        // Reset the start time.
-        mStartTime = -1;
-        mDismissed = false;
-        removeCallbacks(mDelayedHide);
-        if (!mPostedShow) {
-            postDelayed(mDelayedShow, MIN_DELAY);
-            mPostedShow = true;
-        }
-    }
-
-    @Override
-    protected boolean verifyDrawable(Drawable who) {
-        return who == mIndicator
-                || super.verifyDrawable(who);
-    }
-
-    void startAnimation() {
-        if (getVisibility() != VISIBLE) {
-            return;
-        }
-
-        if (mIndicator instanceof Animatable) {
-            mShouldStartAnimationDrawable = true;
-        }
-        postInvalidate();
-    }
-
-    void stopAnimation() {
-        if (mIndicator instanceof Animatable) {
-            mIndicator.stop();
-            mShouldStartAnimationDrawable = false;
-        }
-        postInvalidate();
-    }
-
-    @Override
-    public void setVisibility(int v) {
-        if (getVisibility() != v) {
-            super.setVisibility(v);
-            if (v == GONE || v == INVISIBLE) {
-                stopAnimation();
-            } else {
-                startAnimation();
-            }
-        }
-    }
-
-    @Override
-    protected void onVisibilityChanged(View changedView, int visibility) {
-        super.onVisibilityChanged(changedView, visibility);
-        if (visibility == GONE || visibility == INVISIBLE) {
-            stopAnimation();
-        } else {
-            startAnimation();
-        }
-    }
-
-    @Override
-    public void invalidateDrawable(Drawable dr) {
-        if (verifyDrawable(dr)) {
-            final Rect dirty = dr.getBounds();
-            final int scrollX = getScrollX() + getPaddingLeft();
-            final int scrollY = getScrollY() + getPaddingTop();
-
-            invalidate(dirty.left + scrollX, dirty.top + scrollY,
-                    dirty.right + scrollX, dirty.bottom + scrollY);
-        } else {
-            super.invalidateDrawable(dr);
-        }
-    }
-
     @Override
     protected void onSizeChanged(int w, int h, int oldWidth, int oldHeight) {
         super.onSizeChanged(w, h, oldWidth, oldHeight);
         updateWidthHeight(w, h);
-        dragWidth = height - getPaddingTop() - getPaddingBottom();
-        updateDrawableBounds(w, h);
-    }
-
-    private void updateDrawableBounds(int w, int h) {
-        // onDraw will translate the canvas so we draw starting at 0,0.
-        // Subtract out padding for the purposes of the calculations below.
-        w -= getPaddingRight() + getPaddingLeft();
-        h -= getPaddingTop() + getPaddingBottom();
-
-        int right = w;
-        int bottom = h;
-        int top = 0;
-        int left = 0;
-
-        if (mIndicator != null) {
-            // Maintain aspect ratio. Certain kinds of animated drawables
-            // get very confused otherwise.
-            final int intrinsicWidth = mIndicator.getIntrinsicWidth();
-            final int intrinsicHeight = mIndicator.getIntrinsicHeight();
-            final float intrinsicAspect = (float) intrinsicWidth / intrinsicHeight;
-            final float boundAspect = (float) w / h;
-            if (intrinsicAspect != boundAspect) {
-                if (boundAspect > intrinsicAspect) {
-                    // New width is larger. Make it smaller to match height.
-                    final int width = (int) (h * intrinsicAspect);
-                    left = (w - width) / 2;
-                    right = left + width;
-                } else {
-                    // New height is larger. Make it smaller to match width.
-                    final int height = (int) (w * (1 / intrinsicAspect));
-                    top = (h - height) / 2;
-                    bottom = top + height;
-                }
-            }
-            mIndicator.setBounds(left, top, right, bottom);
-        }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //Log.e("debug", "onDraw");
-        // drawValidationRect(canvas);
-        //drawDragView(canvas);
-        drawTrack(canvas);
-    }
-
-    void drawTrack(Canvas canvas) {
-        Log.e("debug", "drawTrack");
-        if (mIndicator != null) {
-            // Translate canvas so a indeterminate circular progress bar with padding
-            // rotates properly in its animation
-            mIndicator.draw(canvas);
-            if (mShouldStartAnimationDrawable && mIndicator instanceof Animatable) {
-                mIndicator.start();
-                mShouldStartAnimationDrawable = false;
-            }
-        }
+        drawValidationRect(canvas);
+        drawDragView(canvas);
     }
 
     private void drawValidationRect(Canvas canvas) {
@@ -283,21 +106,59 @@ public class DragValidationView extends View {
     }
 
     private void drawDragView(Canvas canvas) {
-        //验证成功动画
-        if (isAutoDrag && dragDistance + dragWidth == width) {
+        //画滑块划过的背景
+        paint.setColor(Color.parseColor("#7ca88c"));
+        RectF roundRect = new RectF(0, 0, dragDistance + dragAttribute.getDragRoundRadius() * 2, height);
+        canvas.drawRoundRect(roundRect, dragAttribute.getDragRoundRadius(), dragAttribute.getDragRoundRadius(), paint);
 
+        //画拖动滑块
+        if (dragView == null) {
+            dragView = new RectF(dragDistance, getPaddingTop(), dragDistance + dragWidth, height - getPaddingBottom());
         } else {
-            //画拖动滑块
-            if (dragView == null) {
-                dragView = new RectF(dragDistance, getPaddingTop(), dragDistance + dragWidth, height - getPaddingBottom());
-            } else {
-                dragView.left = dragDistance;
-                dragView.top = getPaddingTop();
-                dragView.right = dragDistance + dragWidth;
-                dragView.bottom = height - getPaddingBottom();
+            dragView.left = dragDistance;
+            dragView.top = getPaddingTop();
+            dragView.right = dragDistance + dragWidth;
+            dragView.bottom = height - getPaddingBottom();
+        }
+        paint.setColor(Color.parseColor("#22aa8c"));
+        canvas.drawRoundRect(dragView, dragAttribute.getDragRoundRadius(), dragAttribute.getDragRoundRadius(), paint);
+
+        if (!isAutoDrag && !isDragIng && dragDistance == 0) {
+            dragBefore();
+        }
+        dragProcess(dragDistance);
+        if (!isAutoDrag && !isDragIng && dragDistance + dragWidth < width) {
+            dragFinish(false);
+        }
+        //验证成功动画
+        if (!isAutoDrag && !isDragIng && dragDistance + dragWidth == width) {
+            paint.setColor(Color.parseColor("#ffffff"));
+            canvas.drawCircle(dragView.centerX(), dragView.centerY(), dragAttribute.getDragRoundRadius(), paint);
+
+            //画加载文字
+            if (dragAttribute.isTextVisible() && !TextUtils.isEmpty(dragAttribute.getTipText())) {
+                String loadingText = "正在加载中";
+                float textWidth = paint.measureText(loadingText);
+                float x = (width - textWidth) / 2;
+                float y = getBaseLine((height - dragAttribute.getTipTextSize()) / 2,
+                        (height + dragAttribute.getTipTextSize()) / 2, paint);  //获取文字绘制垂直方向的基准线(y值)
+                paint.setColor(DragAttribute.DEFAULT_TIP_TEXT_COLOR);
+                canvas.drawText(loadingText, x, y, paint);
             }
-            paint.setColor(Color.parseColor("#FFE75764"));
-            canvas.drawRoundRect(dragView, dragAttribute.getDragRoundRadius(), dragAttribute.getDragRoundRadius(), paint);
+            dragFinish(true);
+        }
+    }
+
+    @Override
+    public void computeScroll() {
+        if (isAutoDrag) {
+            if (dragDistance > 0) {
+                dragDistance -= dragAnimDistance / 30;
+            } else {
+                dragDistance = 0;
+                isAutoDrag = false;
+            }
+            postInvalidate();
         }
     }
 
@@ -322,30 +183,20 @@ public class DragValidationView extends View {
         return eventResult;
     }
 
-    @Override
-    public void computeScroll() {
-        if (isAutoDrag) {
-            if (dragDistance > 0) {
-                dragDistance -= dragAnimDistance / 30;
-            } else {
-                dragDistance = 0;
-                isAutoDrag = false;
-            }
-            postInvalidate();
-        }
-    }
-
     public boolean dragLeftTouchEvent(MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                downX = event.getX();
-                downY = event.getY();
+                if (inDragBound(x, y, dragView)) {
+                    downX = event.getX();
+                    downY = event.getY();
+                    isDragIng = true;
+                }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (!isAutoDrag && inDragBound(x, y, dragView)) {
+                if (!isAutoDrag && isDragIng) {
                     float length = x - downX;
                     if (length >= 0) {
                         dragDistance = length;
@@ -356,13 +207,18 @@ public class DragValidationView extends View {
                             dragDistance -= length;
                         }
                     }
-                    if (dragDistance >= 0 && dragDistance + dragWidth <= width) {
+                    if (dragDistance >= 0) {
+                        if (dragDistance + dragWidth >= width) {
+                            dragDistance = width - dragWidth;
+                            isDragIng = false;
+                            isAutoDrag = false;
+                        }
                         postInvalidate();
                     }
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                if (dragDistance > 0) {
+                if (dragDistance > 0 && dragDistance + dragWidth < width) {
                     dragAnimDistance = dragDistance;
                     isAutoDrag = true;
                     postInvalidate();
@@ -480,74 +336,18 @@ public class DragValidationView extends View {
         if (measureHeight != height) {
             height = measureHeight;
         }
-    }
-
-
-    @Override
-    protected void drawableStateChanged() {
-        super.drawableStateChanged();
-        updateDrawableState();
-    }
-
-    private void updateDrawableState() {
-        final int[] state = getDrawableState();
-        if (mIndicator != null && mIndicator.isStateful()) {
-            mIndicator.setState(state);
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    public void drawableHotspotChanged(float x, float y) {
-        super.drawableHotspotChanged(x, y);
-
-        if (mIndicator != null) {
-            mIndicator.setHotspot(x, y);
-        }
+        dragWidth = height - getPaddingTop() - getPaddingBottom();
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        startAnimation();
-        removeCallbacks();
     }
 
     @Override
     protected void onDetachedFromWindow() {
-        stopAnimation();
-        // This should come after stopAnimation(), otherwise an invalidate message remains in the
-        // queue, which can prevent the entire view hierarchy from being GC'ed during a rotation
         super.onDetachedFromWindow();
-        removeCallbacks();
     }
-
-    private void removeCallbacks() {
-        removeCallbacks(mDelayedHide);
-        removeCallbacks(mDelayedShow);
-    }
-
-    private final Runnable mDelayedHide = new Runnable() {
-
-        @Override
-        public void run() {
-            mPostedHide = false;
-            mStartTime = -1;
-            setVisibility(View.GONE);
-        }
-    };
-
-    private final Runnable mDelayedShow = new Runnable() {
-
-        @Override
-        public void run() {
-            mPostedShow = false;
-            if (!mDismissed) {
-                mStartTime = System.currentTimeMillis();
-                setVisibility(View.VISIBLE);
-            }
-        }
-    };
 
     /**
      * @param top
@@ -567,5 +367,37 @@ public class DragValidationView extends View {
     public static int px2dpsp(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
+    }
+
+    public interface DragValidationListener {
+        void dragBefore();
+
+        void dragProcess(float dragLength);
+
+        void dragFinish(boolean success);
+    }
+
+    public void setDragValiListener(DragValidationListener validationListener) {
+        if (this.validationListener == null) {
+            this.validationListener = validationListener;
+        }
+    }
+
+    private void dragBefore() {
+        if (validationListener != null) {
+            validationListener.dragBefore();
+        }
+    }
+
+    private void dragProcess(float dragLength) {
+        if (validationListener != null) {
+            validationListener.dragProcess(dragLength);
+        }
+    }
+
+    private void dragFinish(boolean success) {
+        if (validationListener != null) {
+            validationListener.dragFinish(success);
+        }
     }
 }

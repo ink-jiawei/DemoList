@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by Jack on 2015/10/16.
  */
-public class ArrowsIndicator extends Indicator {
+public class  ArrowsIndicator extends Indicator {
 
     public static final int ALPHA = 255;
 
