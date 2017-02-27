@@ -1,5 +1,6 @@
 package com.inkhjw.dragvalidationdemo.widget;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -15,6 +16,8 @@ import android.view.View;
 
 import com.inkhjw.dragvalidationdemo.R;
 
+import java.util.ArrayList;
+
 /**
  * @author hjw
  *         拖动验证View
@@ -27,8 +30,7 @@ public class DragValidationView extends View {
     private DragAttribute dragAttribute;//拖动参数
     private float dragDistance = 0;//当前拖动的距离
     private RectF dragView;//拖动滑块矩阵
-    private float downX;
-    private float downY;
+    private float downX, downY;
     private boolean isDragIng = false;
     private boolean isAutoDrag = false;
     private float dragAnimDistance;//拖动滑块矩阵动画回弹的距离
@@ -79,10 +81,19 @@ public class DragValidationView extends View {
         updateWidthHeight(w, h);
     }
 
+    private void updateWidthHeight(int measureWidth, int measureHeight) {
+        if (measureWidth != width) {
+            width = measureWidth;
+        }
+        if (measureHeight != height) {
+            height = measureHeight;
+        }
+        dragWidth = height - getPaddingTop() - getPaddingBottom();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //Log.e("debug", "onDraw");
         drawValidationRect(canvas);
         drawDragView(canvas);
     }
@@ -95,7 +106,6 @@ public class DragValidationView extends View {
 
         //画提示文字
         if (dragAttribute.isTextVisible() && !TextUtils.isEmpty(dragAttribute.getTipText())) {
-            //Log.e("debug", "draw tipText");
             float textWidth = paint.measureText(dragAttribute.getTipText());
             float x = (width - textWidth) / 2;
             float y = getBaseLine((height - dragAttribute.getTipTextSize()) / 2,
@@ -106,12 +116,6 @@ public class DragValidationView extends View {
     }
 
     private void drawDragView(Canvas canvas) {
-        //画滑块划过的背景
-        paint.setColor(Color.parseColor("#7ca88c"));
-        RectF roundRect = new RectF(0, 0, dragDistance + dragAttribute.getDragRoundRadius() * 2, height);
-        canvas.drawRoundRect(roundRect, dragAttribute.getDragRoundRadius(), dragAttribute.getDragRoundRadius(), paint);
-
-        //画拖动滑块
         if (dragView == null) {
             dragView = new RectF(dragDistance, getPaddingTop(), dragDistance + dragWidth, height - getPaddingBottom());
         } else {
@@ -120,32 +124,181 @@ public class DragValidationView extends View {
             dragView.right = dragDistance + dragWidth;
             dragView.bottom = height - getPaddingBottom();
         }
+        //画滑块划过的背景
+        if (dragDistance != 0) {
+            paint.setColor(Color.parseColor("#7ca88c"));
+            RectF roundRect = new RectF(0, 0, dragDistance + dragAttribute.getDragRoundRadius() * 2, height);
+            canvas.drawRoundRect(roundRect, dragAttribute.getDragRoundRadius(), dragAttribute.getDragRoundRadius(), paint);
+        }
+
+        //画拖动滑块
         paint.setColor(Color.parseColor("#22aa8c"));
         canvas.drawRoundRect(dragView, dragAttribute.getDragRoundRadius(), dragAttribute.getDragRoundRadius(), paint);
 
-        if (!isAutoDrag && !isDragIng && dragDistance == 0) {
-            dragBefore();
-        }
-        dragProcess(dragDistance);
-        if (!isAutoDrag && !isDragIng && dragDistance + dragWidth < width) {
-            dragFinish(false);
-        }
-        //验证成功动画
-        if (!isAutoDrag && !isDragIng && dragDistance + dragWidth == width) {
-            paint.setColor(Color.parseColor("#ffffff"));
-            canvas.drawCircle(dragView.centerX(), dragView.centerY(), dragAttribute.getDragRoundRadius(), paint);
-
-            //画加载文字
-            if (dragAttribute.isTextVisible() && !TextUtils.isEmpty(dragAttribute.getTipText())) {
-                String loadingText = "正在加载中";
-                float textWidth = paint.measureText(loadingText);
-                float x = (width - textWidth) / 2;
-                float y = getBaseLine((height - dragAttribute.getTipTextSize()) / 2,
-                        (height + dragAttribute.getTipTextSize()) / 2, paint);  //获取文字绘制垂直方向的基准线(y值)
-                paint.setColor(DragAttribute.DEFAULT_TIP_TEXT_COLOR);
-                canvas.drawText(loadingText, x, y, paint);
+        if (!isAutoDrag && !isDragIng) {
+            //验证成功动画
+            if (dragDistance + dragWidth == width) {
+                drawDragSuccess(canvas);
+                startSuccessAnim();
+                dragFinish(true);
+            } else {
+                if (dragDistance == 0) {
+                    drawDragBefore(canvas);
+                    startBeforeAnim();
+                    dragBefore();
+                }
             }
-            dragFinish(true);
+        } else {
+            stopBeforeAnim();
+            stopSuccessAnim();
+            drawDragBefore(canvas);
+
+            if (isAutoDrag) {
+                if (dragDistance + dragWidth < width) {
+                    dragFinish(false);
+                }
+            } else if (isDragIng) {
+                dragProcess(dragDistance);
+            }
+        }
+    }
+
+    private void drawDragBefore(Canvas canvas) {
+        paint.setColor(Color.parseColor("#ffffff"));
+        float spacing = 15;
+        float centerX = dragView.centerX();
+            float centerY = dragView.centerY();
+
+            //一个箭头从上到下三个点
+            float x1 = centerX - spacing;
+            float y1 = centerY - spacing;
+            float x2 = centerX;
+            float y2 = centerY;
+            float x3 = centerX - spacing;
+            float y3 = centerY + spacing;
+
+            for (int i = 0; i < 2; i++) {
+                paint.setAlpha(alphas[i]);
+            canvas.drawLine(x1 + spacing * i, y1, x2 + spacing * i, y2, paint);
+            canvas.drawLine(x2 + spacing * i, y2, x3 + spacing * i, y3, paint);
+        }
+    }
+
+    /**
+     * 开始拖动前的动画
+     */
+    int[] alphas = new int[]{255,
+            255};
+    private ArrayList<ValueAnimator> mAnimators1 = new ArrayList<>();
+
+    public void startBeforeAnim() {
+        //Log.e("debug", "startBeforeAnim");
+        if (mAnimators1.size() == 0) {
+            int[] delays = new int[]{350, 0};
+            for (int i = 0; i < 2; i++) {
+                final int index = i;
+
+                ValueAnimator alphaAnim = ValueAnimator.ofInt(255, 51, 255);
+                alphaAnim.setDuration(1000);
+                alphaAnim.setRepeatCount(-1);
+                alphaAnim.setStartDelay(delays[i]);
+                alphaAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        alphas[index] = (int) animation.getAnimatedValue();
+                        postInvalidate();
+                    }
+                });
+                mAnimators1.add(alphaAnim);
+            }
+        }
+        for (ValueAnimator animator : mAnimators1) {
+            if (animator != null && !animator.isStarted()) {
+                animator.start();
+            }
+        }
+    }
+
+    public void stopBeforeAnim() {
+        //Log.e("debug", "stopBeforeAnim");
+        for (int i = 0; i < mAnimators1.size(); i++) {
+            ValueAnimator animator = mAnimators1.get(i);
+            if (animator != null && animator.isStarted()) {
+                animator.removeAllUpdateListeners();
+                animator.end();
+                mAnimators1.remove(animator);
+            }
+        }
+    }
+
+    private void drawDragSuccess(Canvas canvas) {
+//        paint.setColor(Color.parseColor("#ffffff"));
+//        canvas.drawCircle(dragView.centerX(), dragView.centerY(), dragAttribute.getDragRoundRadius(), paint);
+
+        //画加载文字
+        if (dragAttribute.isTextVisible() && !TextUtils.isEmpty(dragAttribute.getTipText())) {
+            String loadingText = "正在加载中";
+            float textWidth = paint.measureText(loadingText);
+            float x = (width - textWidth) / 2;
+            float y = getBaseLine((height - dragAttribute.getTipTextSize()) / 2,
+                    (height + dragAttribute.getTipTextSize()) / 2, paint);  //获取文字绘制垂直方向的基准线(y值)
+            paint.setColor(DragAttribute.DEFAULT_TIP_TEXT_COLOR);
+            canvas.drawText(loadingText, x, y, paint);
+        }
+        Paint successPaint = new Paint();
+        successPaint.setAntiAlias(true);
+        successPaint.setStyle(Paint.Style.STROKE);
+        successPaint.setStrokeWidth(2);
+        successPaint.setColor(Color.WHITE);
+        RectF arc = new RectF(dragView.centerX() - 12, dragView.centerY() - 12, dragView.centerX() + 12, dragView.centerY() + 12);
+        canvas.drawArc(arc, -45 + degrees, 300, false, successPaint);
+    }
+
+    /**
+     * 绘制拖动验证成功的动画
+     */
+    float degrees;
+    private ArrayList<ValueAnimator> mAnimators2 = new ArrayList<>();
+
+    public void startSuccessAnim() {
+        //Log.e("debug", "startSuccessAnim");
+        if (mAnimators2.size() == 0) {
+            ValueAnimator rotateAnim = ValueAnimator.ofFloat(0, 180, 360);
+            rotateAnim.setDuration(750);
+            rotateAnim.setRepeatCount(-1);
+            rotateAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    degrees = (float) animation.getAnimatedValue();
+                    postInvalidate();
+                }
+            });
+            mAnimators2.add(rotateAnim);
+        }
+        for (ValueAnimator animator : mAnimators2) {
+            if (animator != null && !animator.isStarted()) {
+                animator.start();
+            }
+        }
+    }
+
+    public void stopSuccessAnim() {
+        //Log.e("debug", "stopBeforeAnim");
+        for (int i = 0; i < mAnimators2.size(); i++) {
+            ValueAnimator animator = mAnimators2.get(i);
+            if (animator != null && animator.isStarted()) {
+                animator.removeAllUpdateListeners();
+                animator.end();
+                mAnimators2.remove(animator);
+            }
+        }
+    }
+
+    @Override
+    protected void onVisibilityChanged(View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
+        if (visibility != VISIBLE) {
+            stopBeforeAnim();
         }
     }
 
@@ -220,6 +373,7 @@ public class DragValidationView extends View {
             case MotionEvent.ACTION_UP:
                 if (dragDistance > 0 && dragDistance + dragWidth < width) {
                     dragAnimDistance = dragDistance;
+                    isDragIng = false;
                     isAutoDrag = true;
                     postInvalidate();
                 }
@@ -329,16 +483,6 @@ public class DragValidationView extends View {
         return result | (childMeasuredState & MEASURED_STATE_MASK);
     }
 
-    private void updateWidthHeight(int measureWidth, int measureHeight) {
-        if (measureWidth != width) {
-            width = measureWidth;
-        }
-        if (measureHeight != height) {
-            height = measureHeight;
-        }
-        dragWidth = height - getPaddingTop() - getPaddingBottom();
-    }
-
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -347,6 +491,14 @@ public class DragValidationView extends View {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+    }
+
+    public synchronized void setValidationFinish() {
+        isDragIng = false;
+        isAutoDrag = false;
+        dragDistance = 0;
+        isCall = false;
+        postInvalidate();
     }
 
     /**
@@ -377,27 +529,41 @@ public class DragValidationView extends View {
         void dragFinish(boolean success);
     }
 
-    public void setDragValiListener(DragValidationListener validationListener) {
+    public void setDragValidationListener(DragValidationListener validationListener) {
         if (this.validationListener == null) {
             this.validationListener = validationListener;
         }
     }
 
     private void dragBefore() {
-        if (validationListener != null) {
-            validationListener.dragBefore();
+        if (!isCall) {
+            if (validationListener != null) {
+                validationListener.dragBefore();
+                isCall = true;
+            }
         }
     }
 
     private void dragProcess(float dragLength) {
+        if (isCall) {
+            isCall = false;
+        }
         if (validationListener != null) {
             validationListener.dragProcess(dragLength);
         }
     }
 
     private void dragFinish(boolean success) {
-        if (validationListener != null) {
-            validationListener.dragFinish(success);
+        if (!isCall) {
+            if (validationListener != null) {
+                validationListener.dragFinish(success);
+                isCall = true;
+            }
         }
     }
+
+    /**
+     * 是否回调dragBefore、dragFinish()
+     */
+    private boolean isCall = false;
 }

@@ -15,4 +15,13 @@
         drag:tipText="向右滑动登录"
         drag:tipTextColor="#65c98c"
         drag:tipTextSize="16sp" />
+
+    <com.inkhjw.dragvalidationdemo.widget.DragView
+        android:id="@+id/drag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="#65c98c"
+        android:text="属性动画测试"
+        android:textColor="#ffffff" />
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.inkhjw.dragvalidationdemo;
+package com.inkhjw.dragvalidationdemo.utils;
 
 import android.content.Context;
 

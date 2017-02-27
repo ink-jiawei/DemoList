@@ -1,4 +1,4 @@
-package com.inkhjw.dragvalidationdemo.widget;
+package com.inkhjw.dragvalidationdemo.drawable;
 
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
