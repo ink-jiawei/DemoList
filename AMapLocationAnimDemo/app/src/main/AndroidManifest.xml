@@ -32,6 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Anim1" />
+        <activity android:name=".Anim2" />
         <!--高德地图定位服务-->
         <service android:name="com.amap.api.location.APSService" />
         <!--高德地图AK配置-->

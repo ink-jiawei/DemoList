@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!--地图-->
-    <com.amap.api.maps.MapView
-        android:id="@+id/map_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:clickable="true" />
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <Button
-        android:id="@+id/start_anim_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:background="#9f65ff"
-        android:text="重新开始动画"
+        android:onClick="anim1"
+        android:text="动画效果一"
         android:textColor="#ffffff" />
 
-    <com.okeytime.watchguards.ScanningView
-        android:id="@+id/scanning_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center" />
-
-</FrameLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#9f65ff"
+        android:onClick="anim2"
+        android:text="动画效果二"
+        android:textColor="#ffffff" />
+</LinearLayout>

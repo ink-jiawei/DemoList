@@ -46,19 +46,20 @@ public class ScanningView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
         drawRect(canvas);
         drawRect2(canvas);
     }
 
     protected void drawRect(Canvas canvas) {
-        paint.setColor(Color.GREEN);
-        paint.setStrokeWidth(3);
-        canvas.drawRect(0, 0, width, height, paint);
+        paint.setColor(Color.RED);
+        paint.setStrokeWidth(5);
+        canvas.drawRect(getPaddingLeft(), getPaddingTop(), width + getPaddingLeft(), height + getPaddingTop(), paint);
     }
 
     protected void drawRect2(Canvas canvas) {
         paint.setColor(Color.BLUE);
-        paint.setStrokeWidth(10);
+        paint.setStrokeWidth(20);
         canvas.save();
         for (int i = 0; i < 4; i++) {
             canvas.drawLine(0, 0, 0, 30, paint);
@@ -71,5 +72,23 @@ public class ScanningView extends View {
     @Override
     protected void onVisibilityChanged(View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
+    }
+
+    public int getWidthT() {
+        return width == 0 ? 200 : width;
+    }
+
+    public synchronized void setWidthT(int width) {
+        this.width = width;
+        postInvalidate();
+    }
+
+    public int getHeightT() {
+        return height;
+    }
+
+    public synchronized void setHeightT(int height) {
+        this.height = height;
+        postInvalidate();
     }
 }
