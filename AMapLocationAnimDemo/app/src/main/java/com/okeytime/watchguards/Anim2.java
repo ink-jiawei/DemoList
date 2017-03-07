@@ -89,7 +89,7 @@ public class Anim2 extends AppCompatActivity implements AMap.OnMapLoadedListener
                 startRectScaleOutAnim(targetLatlng);
             }
             CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(
-                    new CameraPosition(targetLatlng, (animCount * 3) + 3, 0, 0));
+                    new CameraPosition(targetLatlng, animCount * 4, 0, 0));
             map.animateCamera(cameraUpdate, 1000 * 8,
                     new AMap.CancelableCallback() {
                         @Override
@@ -129,7 +129,7 @@ public class Anim2 extends AppCompatActivity implements AMap.OnMapLoadedListener
                     int width = getScreenWidth();
 //                    scanning_view.setWidthT(width);
 //                    scanning_view.setHeightT(height);
-                    float scaleSize = (float) (width - 100) / (float) curWidth;
+                    float scaleSize = (float) (width / 2) / (float) curWidth;
                     Log.e("debug", "scaleSize=" + scaleSize);
                     scanning_view.setScaleX(scaleSize);
                     scanning_view.setScaleY(scaleSize);
@@ -219,7 +219,7 @@ public class Anim2 extends AppCompatActivity implements AMap.OnMapLoadedListener
         @Override
         public void run() {
             byte[] out_bytes = new byte[44100];
-            InputStream is = getResources().openRawResource(R.raw.ding2);
+            InputStream is = getResources().openRawResource(R.raw.ding);
 
             int length;
             at.play();

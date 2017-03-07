@@ -34,6 +34,7 @@
         </activity>
         <activity android:name=".Anim1" />
         <activity android:name=".Anim2" />
+        <activity android:name=".Anim3" />
         <!--高德地图定位服务-->
         <service android:name="com.amap.api.location.APSService" />
         <!--高德地图AK配置-->

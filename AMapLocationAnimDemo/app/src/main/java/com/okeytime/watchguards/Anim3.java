@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdate;
@@ -30,11 +29,10 @@ import com.amap.api.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class Anim1 extends AppCompatActivity implements AMap.OnMapLoadedListener {
+public class Anim3 extends AppCompatActivity implements AMap.OnMapLoadedListener {
     private MapView map_view;
     private ScanningView scanning_view;
     private Button start_anim_btn;
-    private CheckBox check;
 
     private AMap map;
     private Projection projection;
@@ -46,7 +44,7 @@ public class Anim1 extends AppCompatActivity implements AMap.OnMapLoadedListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.anim1);
+        setContentView(R.layout.anim3);
         init();
         map_view.onCreate(savedInstanceState);
     }
@@ -63,7 +61,6 @@ public class Anim1 extends AppCompatActivity implements AMap.OnMapLoadedListener
                 startAnim();
             }
         });
-        check = (CheckBox) findViewById(R.id.check);
 
         am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
     }
@@ -79,49 +76,38 @@ public class Anim1 extends AppCompatActivity implements AMap.OnMapLoadedListener
         map.addMarker(new MarkerOptions()
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.rail_circle_center_point))
                 .position(targetLatlng));
-        animCount = 0;
-        startLocationAnim(targetLatlng);
-//            ToastHelper.showToast(Anim1.this, "动画进行中，请稍后...");
-    }
 
-    private int animCount = 0;
+        startLocationAnim(targetLatlng);
+    }
 
     private void startLocationAnim(final LatLng targetLatlng) {
-        if (++animCount <= 3) {
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(
-                    new CameraPosition(targetLatlng, animCount * 4, 0, 0));
-            map.animateCamera(cameraUpdate, 1000 * 8,
-                    new AMap.CancelableCallback() {
-                        @Override
-                        public void onFinish() {
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        startRectAnim(targetLatlng);
-                                        Log.e("debug", getClass().getName() + "第" + animCount + "次定位动画完成!");
-                                        Thread.sleep(2000);
-                                        startLocationAnim(targetLatlng);
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }).start();
-                        }
+        animTime = 0;
+        startRectAnim(targetLatlng);
 
-                        @Override
-                        public void onCancel() {
-                            Log.e("debug", getClass().getName() + "第" + animCount + "次定位动画取消!");
-                        }
-                    });
-        }
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(
+                new CameraPosition(targetLatlng, 15, 0, 0));
+        map.animateCamera(cameraUpdate, 1000 * 30,
+                new AMap.CancelableCallback() {
+                    @Override
+                    public void onFinish() {
+                        Log.e("debug", getClass().getName() + "定位动画完成!");
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.e("debug", getClass().getName() + "定位动画取消!");
+                    }
+                });
     }
+
+    private int animTime = 0;//动画时间
 
     public void startRectAnim(final LatLng targetLatlng) {
         if (projection != null) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    animTime += 1 * 1000;
                     Point point = projection.toScreenLocation(targetLatlng);
                     Log.e("debug", "startRectAnim");
 
@@ -142,20 +128,26 @@ public class Anim1 extends AppCompatActivity implements AMap.OnMapLoadedListener
 
                     AnimatorSet set = new AnimatorSet();
                     set.play(animatorScaleX).with(animatorScaleY);
-                    set.setDuration(1500);
+                    set.setDuration(500);
                     set.start();
                     set.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             playAudio();
-                            if (check.isChecked()) {
-                                scanning_view.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        scanning_view.setVisibility(View.GONE);
+                            scanning_view.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    scanning_view.setVisibility(View.GONE);
+                                    if (animTime > 0 && animTime <= 30 * 1000) {
+                                        scanning_view.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                startRectAnim(targetLatlng);
+                                            }
+                                        }, 300);
                                     }
-                                }, 500);
-                            }
+                                }
+                            }, 200);
                             Log.e("debug", "onAnimationEnd");
                         }
                     });
@@ -220,6 +212,7 @@ public class Anim1 extends AppCompatActivity implements AMap.OnMapLoadedListener
                 am.setMode(AudioManager.MODE_NORMAL);
             }
         }
+
     }
 
     public int getScreenHeight() {

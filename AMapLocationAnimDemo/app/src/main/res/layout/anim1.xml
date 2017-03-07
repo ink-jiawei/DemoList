@@ -19,10 +19,20 @@
         android:text="重新开始动画"
         android:textColor="#ffffff" />
 
+    <CheckBox
+        android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#9f65ff"
+        android:checked="false"
+        android:text="隐藏定位框"
+        android:textColor="#ffffff" />
+
     <com.okeytime.watchguards.ScanningView
         android:id="@+id/scanning_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:visibility="gone" />
 

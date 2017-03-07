@@ -59,11 +59,11 @@ public class ScanningView extends View {
 
     protected void drawRect2(Canvas canvas) {
         paint.setColor(Color.BLUE);
-        paint.setStrokeWidth(20);
+        paint.setStrokeWidth(12);
         canvas.save();
         for (int i = 0; i < 4; i++) {
-            canvas.drawLine(0, 0, 0, 30, paint);
-            canvas.drawLine(0, 0, 30, 0, paint);
+            canvas.drawLine(getPaddingLeft(), getPaddingTop(), getPaddingLeft(), 30 + getPaddingTop(), paint);
+            canvas.drawLine(getPaddingLeft(), getPaddingTop(), 30 + getPaddingLeft(), getPaddingTop(), paint);
             canvas.rotate(90, width / 2, height / 2);
         }
         canvas.restoreToCount(canvas.getSaveCount());
@@ -75,7 +75,7 @@ public class ScanningView extends View {
     }
 
     public int getWidthT() {
-        return width == 0 ? 200 : width;
+        return width == 0 ? 100 : width;
     }
 
     public synchronized void setWidthT(int width) {
