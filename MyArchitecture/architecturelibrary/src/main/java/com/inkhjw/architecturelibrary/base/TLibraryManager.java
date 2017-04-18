@@ -13,7 +13,6 @@ public class TLibraryManager {
 
 
     public static class TLibrarys {
-        String butterKnife ="ButterKnife";
-        String butterKnife ="ButterKnife";
+        String butterKnife = "ButterKnife";
     }
 }

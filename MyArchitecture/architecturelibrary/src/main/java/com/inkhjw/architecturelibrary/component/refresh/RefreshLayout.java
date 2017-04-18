@@ -69,35 +69,11 @@ public abstract class RefreshLayout extends ViewGroup {
     }
 
     private void layoutChildren() {
-        int offsetX = mPtrIndicator.getCurrentPosY();
         int paddingLeft = getPaddingLeft();
         int paddingTop = getPaddingTop();
 
-        if (mHeaderView != null) {
-            MarginLayoutParams lp = (MarginLayoutParams) mHeaderView.getLayoutParams();
-            final int left = paddingLeft + lp.leftMargin;
-            final int top = paddingTop + lp.topMargin + offsetX - mHeaderHeight;
-            final int right = left + mHeaderView.getMeasuredWidth();
-            final int bottom = top + mHeaderView.getMeasuredHeight();
-            mHeaderView.layout(left, top, right, bottom);
-            if (DEBUG && DEBUG_LAYOUT) {
-                PtrCLog.d(LOG_TAG, "onLayout header: %s %s %s %s", left, top, right, bottom);
-            }
-        }
-        if (mContent != null) {
-            if (isPinContent()) {
-                offsetX = 0;
-            }
-            MarginLayoutParams lp = (MarginLayoutParams) mContent.getLayoutParams();
-            final int left = paddingLeft + lp.leftMargin;
-            final int top = paddingTop + lp.topMargin + offsetX;
-            final int right = left + mContent.getMeasuredWidth();
-            final int bottom = top + mContent.getMeasuredHeight();
-            if (DEBUG && DEBUG_LAYOUT) {
-                PtrCLog.d(LOG_TAG, "onLayout content: %s %s %s %s", left, top, right, bottom);
-            }
-            mContent.layout(left, top, right, bottom);
-        }
+        // header layout
+        // content layout
     }
 
     public void setHeaderView(View view) {
