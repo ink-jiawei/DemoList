@@ -16,12 +16,38 @@
         drag:tipTextColor="#65c98c"
         drag:tipTextSize="16sp" />
 
-    <com.inkhjw.dragvalidationdemo.widget.DragView
-        android:id="@+id/drag"
-        android:layout_width="wrap_content"
+    <com.inkhjw.dragvalidationdemo.widget.DragValidationView
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        drag:dragDirection="right"
+        drag:tipText="向左滑动登录"
+        drag:tipTextColor="#65c98c"
+        drag:tipTextSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:background="#65c98c"
-        android:text="属性动画测试"
-        android:textColor="#ffffff" />
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.inkhjw.dragvalidationdemo.widget.DragValidationView
+            android:layout_width="40dp"
+            android:layout_height="300dp"
+            drag:dragDirection="top"
+            drag:tipText="向下滑动登录"
+            drag:tipTextColor="#65c98c"
+            drag:tipTextSize="16sp" />
+
+        <com.inkhjw.dragvalidationdemo.widget.DragValidationView
+            android:layout_width="40dp"
+            android:layout_height="300dp"
+            android:layout_marginLeft="50dp"
+            drag:dragDirection="bottom"
+            drag:tipText="向上滑动登录"
+            drag:tipTextColor="#65c98c"
+            drag:tipTextSize="16sp" />
+
+    </LinearLayout>
 </LinearLayout>

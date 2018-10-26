@@ -374,7 +374,7 @@ public class DateView extends ViewGroup {
             year--;
         }
         /**
-         * 判断接下来显示的视图选中项有哪些,选中、当前日期、1号
+         * 判断接下来显示的视图选中项有哪些：选中、当前日期、1号
          */
         if (year == curYear && month == curMonth) {
             day = curDay;

@@ -1,20 +1,16 @@
 package com.inkhjw.dragvalidationdemo;
 
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 
 import com.inkhjw.dragvalidationdemo.widget.DragValidationView;
-import com.inkhjw.dragvalidationdemo.widget.DragView;
 
 /**
  * 滑动验证效果
  */
 public class MainActivity extends AppCompatActivity {
     private DragValidationView drag_view;
-    private DragView drag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,19 +40,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }, 3000);
                 }
-            }
-        });
-
-        drag = (DragView) findViewById(R.id.drag);
-        ObjectAnimator animator = ObjectAnimator.ofFloat(drag, "rotation", 0f, 360f);
-        animator.setDuration(5000);
-        animator.start();
-        drag.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ObjectAnimator animator = ObjectAnimator.ofFloat(drag, "rotation", 0f, 360f);
-                animator.setDuration(5000);
-                animator.start();
             }
         });
     }
